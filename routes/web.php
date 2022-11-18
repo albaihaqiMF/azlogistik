@@ -1,6 +1,9 @@
 <?php
 
+use App\Helpers\Helpers;
 use App\Http\Controllers\ProfileController;
+use App\Http\Livewire\Comments;
+use App\Models\Project;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -31,5 +34,13 @@ Route::middleware('auth')->group(function () {
 Route::view('button', 'question.button')->name('button');
 Route::view('design', 'question.design')->name('design');
 Route::view('movie', 'question.movie')->name('movie');
+Route::view('card', 'question.card')->name('card');
+Route::get('comments', Comments::class)->name('comment');
+
+Route::get('project', function () {
+    $projects = Project::with('categories')->get();
+
+    return $projects;
+});
 
 require __DIR__ . '/auth.php';

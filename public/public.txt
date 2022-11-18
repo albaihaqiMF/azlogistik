@@ -1,0 +1,178 @@
+/*
+ Navicat Premium Data Transfer
+
+ Source Server         : My PostgreSQL 13
+ Source Server Type    : PostgreSQL
+ Source Server Version : 130002
+ Source Host           : 127.0.0.1:5432
+ Source Catalog        : azlogistik
+ Source Schema         : public
+
+ Target Server Type    : PostgreSQL
+ Target Server Version : 130002
+ File Encoding         : 65001
+
+ Date: 18/11/2022 15:13:58
+*/
+
+
+-- ----------------------------
+-- Sequence structure for categories_id_seq
+-- ----------------------------
+DROP SEQUENCE IF EXISTS "public"."categories_id_seq";
+CREATE SEQUENCE "public"."categories_id_seq" 
+INCREMENT 1
+MINVALUE  1
+MAXVALUE 9223372036854775807
+START 1
+CACHE 1;
+
+-- ----------------------------
+-- Sequence structure for failed_jobs_id_seq
+-- ----------------------------
+DROP SEQUENCE IF EXISTS "public"."failed_jobs_id_seq";
+CREATE SEQUENCE "public"."failed_jobs_id_seq" 
+INCREMENT 1
+MINVALUE  1
+MAXVALUE 9223372036854775807
+START 1
+CACHE 1;
+
+-- ----------------------------
+-- Sequence structure for migrations_id_seq
+-- ----------------------------
+DROP SEQUENCE IF EXISTS "public"."migrations_id_seq";
+CREATE SEQUENCE "public"."migrations_id_seq" 
+INCREMENT 1
+MINVALUE  1
+MAXVALUE 2147483647
+START 1
+CACHE 1;
+
+-- ----------------------------
+-- Sequence structure for personal_access_tokens_id_seq
+-- ----------------------------
+DROP SEQUENCE IF EXISTS "public"."personal_access_tokens_id_seq";
+CREATE SEQUENCE "public"."personal_access_tokens_id_seq" 
+INCREMENT 1
+MINVALUE  1
+MAXVALUE 9223372036854775807
+START 1
+CACHE 1;
+
+-- ----------------------------
+-- Sequence structure for projects_id_seq
+-- ----------------------------
+DROP SEQUENCE IF EXISTS "public"."projects_id_seq";
+CREATE SEQUENCE "public"."projects_id_seq" 
+INCREMENT 1
+MINVALUE  1
+MAXVALUE 9223372036854775807
+START 1
+CACHE 1;
+
+-- ----------------------------
+-- Sequence structure for users_id_seq
+-- ----------------------------
+DROP SEQUENCE IF EXISTS "public"."users_id_seq";
+CREATE SEQUENCE "public"."users_id_seq" 
+INCREMENT 1
+MINVALUE  1
+MAXVALUE 9223372036854775807
+START 1
+CACHE 1;
+
+-- ----------------------------
+-- Table structure for categories
+-- ----------------------------
+DROP TABLE IF EXISTS "public"."categories";
+CREATE TABLE "public"."categories" (
+  "id" int8 NOT NULL DEFAULT nextval('categories_id_seq'::regclass),
+  "title" varchar(255) COLLATE "pg_catalog"."default" NOT NULL,
+  "created_at" timestamp(0),
+  "updated_at" timestamp(0)
+)
+;
+
+-- ----------------------------
+-- Records of categories
+-- ----------------------------
+INSERT INTO "public"."categories" VALUES (1, 'Android', NULL, NULL);
+INSERT INTO "public"."categories" VALUES (2, 'Iklan', NULL, NULL);
+INSERT INTO "public"."categories" VALUES (3, 'Website', NULL, NULL);
+INSERT INTO "public"."categories" VALUES (4, 'Internet Marketing', NULL, NULL);
+INSERT INTO "public"."categories" VALUES (5, 'Redesign', NULL, NULL);
+INSERT INTO "public"."categories" VALUES (6, 'IOS', NULL, NULL);
+
+-- ----------------------------
+-- Table structure for project_category
+-- ----------------------------
+DROP TABLE IF EXISTS "public"."project_category";
+CREATE TABLE "public"."project_category" (
+  "project_id" int8 NOT NULL,
+  "category_id" int8 NOT NULL
+)
+;
+
+-- ----------------------------
+-- Records of project_category
+-- ----------------------------
+INSERT INTO "public"."project_category" VALUES (1, 1);
+INSERT INTO "public"."project_category" VALUES (1, 3);
+INSERT INTO "public"."project_category" VALUES (1, 4);
+INSERT INTO "public"."project_category" VALUES (1, 5);
+INSERT INTO "public"."project_category" VALUES (2, 2);
+INSERT INTO "public"."project_category" VALUES (3, 6);
+INSERT INTO "public"."project_category" VALUES (3, 5);
+
+-- ----------------------------
+-- Table structure for projects
+-- ----------------------------
+DROP TABLE IF EXISTS "public"."projects";
+CREATE TABLE "public"."projects" (
+  "id" int8 NOT NULL DEFAULT nextval('projects_id_seq'::regclass),
+  "name" varchar(255) COLLATE "pg_catalog"."default" NOT NULL,
+  "price" int4 NOT NULL,
+  "created_at" timestamp(0),
+  "updated_at" timestamp(0)
+)
+;
+
+-- ----------------------------
+-- Records of projects
+-- ----------------------------
+INSERT INTO "public"."projects" VALUES (1, 'Project A', 100000, '2022-11-18 15:09:31', '2022-11-18 15:09:31');
+INSERT INTO "public"."projects" VALUES (2, 'Project B', 200000, '2022-11-18 15:09:42', '2022-11-18 15:09:42');
+INSERT INTO "public"."projects" VALUES (3, 'Project C', 150000, '2022-11-18 15:09:51', '2022-11-18 15:09:51');
+
+-- ----------------------------
+-- Alter sequences owned by
+-- ----------------------------
+ALTER SEQUENCE "public"."categories_id_seq"
+OWNED BY "public"."categories"."id";
+SELECT setval('"public"."categories_id_seq"', 8, true);
+
+-- ----------------------------
+-- Alter sequences owned by
+-- ----------------------------
+SELECT setval('"public"."failed_jobs_id_seq"', 2, false);
+
+-- ----------------------------
+-- Alter sequences owned by
+-- ----------------------------
+SELECT setval('"public"."migrations_id_seq"', 2, false);
+
+-- ----------------------------
+-- Alter sequences owned by
+-- ----------------------------
+SELECT setval('"public"."personal_access_tokens_id_seq"', 2, false);
+
+-- ----------------------------
+-- Alter sequences owned by
+-- ----------------------------
+SELECT setval('"public"."projects_id_seq"', 2, false);
+
+-- ----------------------------
+-- Alter sequences owned by
+-- ----------------------------
+SELECT setval('"public"."users_id_seq"', 2, false);

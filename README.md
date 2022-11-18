@@ -7,6 +7,26 @@
 <a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
 </p>
 
+# Requirement
+- composer v2
+- php v8.*
+- node js v16.*
+
+# Installation
+- git clone url_http
+- composer install
+- php artisan key:generate
+- npm install && npm run build
+- php artisan serve
+
+# Test AZLogistik
+- No. 1  {baseURL}/button 
+- No. 2  {baseURL}/design 
+- No. 3  {baseURL}/movie 
+- No. 4 & 5  {baseURL}/card 
+- No. 6  {baseURL}/comments 
+- No. 8 & 9  {baseURL}/public.txt 
+- No. 10  {baseURL}/project
 ## About Laravel
 
 Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
